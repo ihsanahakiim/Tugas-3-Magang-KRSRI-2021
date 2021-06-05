@@ -41,6 +41,8 @@ public:
     }
 };
 
+attributes::attributes(){}
+attributes::~attributes(){}
 
 class RobotKRSRI : public attributes
 {
@@ -51,34 +53,37 @@ public:
     ~RobotKRSRI();
 
     attributes atribut;
+    void jalan();
+    void padamkanApi();
+    void ambilBoneka();
+
     void validMessage(string name){
         cout << name + " Work";
     }
-    
-    void errorMessage(string name){
+    void errorMessage(){
         cout << "---STATUS ERROR---" << endl;
     }
-
-    void jalan(){
-        if (atribut.setStatus(true) == true){
-        atribut.setName("Robot Jalan");
-        validMessage(atribut.getName());
-        }
-    }
-    void padamkanApi(){
-        if (atribut.getStatus() = true){
-        atribut.setName("Padamkan Api");
-        validMessage(atribut.getName());
-        }
-    }
-
-    void ambilBoneka(){
-        if (status == true){
-        atribut.setName("Ambil Boneka");
-        validMessage(atribut.getName());
+    void IfTrue(string name){
+        if (atribut.getStatus() == true){
+            atribut.setName(name);
+            validMessage(atribut.getName());
+        }else{
+            errorMessage();
         }
     }
 };
+RobotKRSRI::RobotKRSRI(){}
+RobotKRSRI::~RobotKRSRI(){}
+
+void RobotKRSRI::jalan(){
+    IfTrue("Robot Jalan");
+}
+void RobotKRSRI::padamkanApi(){
+    IfTrue("Padamkan Api");
+}
+void RobotKRSRI::ambilBoneka(){
+    IfTrue("Ambil Boneka");
+}
 
 //class Boneka : public RobotKRSRI
 //{
