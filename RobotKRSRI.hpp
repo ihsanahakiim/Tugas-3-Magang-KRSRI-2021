@@ -49,10 +49,25 @@ bool attributes::getStatus(){ //getter status
 string attributes::getName(){ //getter name
     return this->name;
 }
-class RobotKRSRI : public attributes  // inheritance 
+//Bonus
+class Boneka
 {
 public:
+    string name;
+    Boneka();
+    ~Boneka();
+};
+
+Boneka::Boneka(){}
+Boneka::~Boneka(){}
+
+class RobotKRSRI : public attributes  // inheritance 
+{
+private:
+    Boneka teddyBear;
+public:
     RobotKRSRI();
+    RobotKRSRI(Boneka teddyBear);
     ~RobotKRSRI();
 
     void jalan();
@@ -61,14 +76,22 @@ public:
     void IfTrue(string name);
 
     void validMessage(string name){         // output work
-        cout << " " + name + " Bekerja" << endl;
+        cout << "Program " + name + " Bekerja" << endl;
     }
     void errorMessage(){                        // output error
         cout << "---STATUS ERROR---" << endl;
     }
+    //overload function
+    void ambilBoneka(Boneka&){
+        nyala(); //pemanggilan fungsi merubah status NULL
+        IfTrue("Ambil Boneka [BONUS]");
+    }
 };
 
 RobotKRSRI::RobotKRSRI():attributes(){}
+RobotKRSRI::RobotKRSRI(Boneka teddyBear){ //composition
+    this->teddyBear = teddyBear;
+}
 RobotKRSRI::~RobotKRSRI(){}
 
 void RobotKRSRI::IfTrue(string name){ //implementasi kondisi robot aspek atribut status
@@ -82,13 +105,12 @@ void RobotKRSRI::IfTrue(string name){ //implementasi kondisi robot aspek atribut
 }
 
 void RobotKRSRI::jalan(){ //implementasi menjalankan robot
-    IfTrue("-Robot Berjalan-");
+    IfTrue("Robot Berjalan");
 }
 void RobotKRSRI::padamkanApi(){ //implementasi memadamkan api
-    IfTrue("-Padamkan Api-");
+    IfTrue("Padamkan Api");
 }
-void RobotKRSRI::ambilBoneka(){ //implementasi mengambilboneka
-    IfTrue("-Ambil Boneka-");
+void RobotKRSRI::ambilBoneka(){ //implementasi mengambil boneka
+    IfTrue("Ambil Boneka");
 }
-
 #endif
