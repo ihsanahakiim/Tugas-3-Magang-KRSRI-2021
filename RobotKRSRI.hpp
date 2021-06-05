@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//16020129 Muhammad Ihsan Abdul Hakim
 class attributes
 {
 private:
@@ -15,106 +16,79 @@ public:
     attributes();
     virtual ~attributes();
 
-    void setName(string name){
-        this->name = name;
-    }
+    void setName(string name);
+    void setStatus(bool status);
+    string getName();
+    bool getStatus();
 
-    void setStatus(bool status){
-        this->status = status;
-    }
-
-    string getName(){
-        return this->name;
-    }
-    bool getStatus(){
-        return this->status;
-    }
-
-    void nyala(){
-        this->status = true;
-    }
-    void mati(){
-        this->status = false;
-    }
-    virtual void jalan(){
-
-    }
+    void nyala();
+    void mati();
+    virtual void jalan(){}  // pure virtual function untuk metode jalan
 };
 
-attributes::attributes(){}
-attributes::~attributes(){}
+attributes::attributes(){}  //constructor kelas atribut
+attributes::~attributes(){} //destructor kelas atribut
 
-class RobotKRSRI : public attributes
+//function member
+void attributes::nyala(){
+    this->status = true;
+}
+void attributes::mati(){
+    this->status = false;
+}
+
+void attributes::setName(string name){ //setter name
+    this->name = name;
+}
+void attributes::setStatus(bool status){ //setter status
+    this->status = status;
+}
+bool attributes::getStatus(){ //getter status
+    return this->status;
+}
+string attributes::getName(){ //getter name
+    return this->name;
+}
+class RobotKRSRI : public attributes  // inheritance 
 {
-private:
-    //int Muhammad_Ihsan_Abdul_Hakim = 16020129;
 public:
     RobotKRSRI();
     ~RobotKRSRI();
 
-    attributes atribut;
     void jalan();
     void padamkanApi();
     void ambilBoneka();
+    void IfTrue(string name);
 
-    void validMessage(string name){
-        cout << name + " Work";
+    void validMessage(string name){         // output work
+        cout << " " + name + " Bekerja" << endl;
     }
-    void errorMessage(){
+    void errorMessage(){                        // output error
         cout << "---STATUS ERROR---" << endl;
     }
-    void IfTrue(string name){
-        if (atribut.getStatus() == true){
-            atribut.setName(name);
-            validMessage(atribut.getName());
-        }else{
-            errorMessage();
-        }
-    }
 };
-RobotKRSRI::RobotKRSRI(){}
+
+RobotKRSRI::RobotKRSRI():attributes(){}
 RobotKRSRI::~RobotKRSRI(){}
 
-void RobotKRSRI::jalan(){
-    IfTrue("Robot Jalan");
+void RobotKRSRI::IfTrue(string name){ //implementasi kondisi robot aspek atribut status
+    if (RobotKRSRI::getStatus() == true){ //implementasi status robot menyala
+        RobotKRSRI::setName(name);
+        validMessage(RobotKRSRI::getName());
+    }
+    else{                               //implementasi status robot mati // ERROR
+        errorMessage();
+    }  
 }
-void RobotKRSRI::padamkanApi(){
-    IfTrue("Padamkan Api");
+
+void RobotKRSRI::jalan(){ //implementasi menjalankan robot
+    IfTrue("-Robot Berjalan-");
 }
-void RobotKRSRI::ambilBoneka(){
-    IfTrue("Ambil Boneka");
+void RobotKRSRI::padamkanApi(){ //implementasi memadamkan api
+    IfTrue("-Padamkan Api-");
 }
-
-//class Boneka : public RobotKRSRI
-//{
-//public:
-//    string name;
-//    Boneka();
-//    ~Boneka();
-
-//    Boneka operator+(const Boneka& object){
-//        Boneka doll;
-//        doll.name = attributes.name + object.name;
-//        return doll;
-//    }
-//    Boneka(const char* teddyBear){
-//        this->name = teddyBear;
-//    }
-//    void ambilBoneka(teddyBear){
-
-//    }
-
-
- 
-//};
-
-//Boneka::Boneka()
-//{
-//}
-
-//Boneka::~Boneka()
-//{
-//}
-
+void RobotKRSRI::ambilBoneka(){ //implementasi mengambilboneka
+    IfTrue("-Ambil Boneka-");
+}
 
 #endif
