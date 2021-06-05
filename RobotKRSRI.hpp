@@ -8,28 +8,38 @@ class attributes
 {
 private:
     int kaki;
-    bool status;
-    int* Boneka;
-    Boneka = NULL;
-    //string name;
+    bool status;;
+    string name;
 
 public:
     attributes();
     virtual ~attributes();
-    string name;
+
+    void setName(string name){
+        this->name = name;
+    }
+
+    void setStatus(bool status){
+        this->status = status;
+    }
+
+    string getName(){
+        return this->name;
+    }
+    bool getStatus(){
+        return this->status;
+    }
 
     void nyala(){
-
+        this->status = true;
     }
     void mati(){
-
+        this->status = false;
     }
     virtual void jalan(){
 
     }
 };
-
-
 
 
 class RobotKRSRI : public attributes
@@ -40,40 +50,66 @@ public:
     RobotKRSRI();
     ~RobotKRSRI();
 
-    void padamkanApi(){
-        
+    attributes atribut;
+    void validMessage(string name){
+        cout << name + " Work";
+    }
+    
+    void errorMessage(string name){
+        cout << "---STATUS ERROR---" << endl;
     }
 
-    virtual void ambilBoneka(){
-
-    }
     void jalan(){
+        if (atribut.setStatus(true) == true){
+        atribut.setName("Robot Jalan");
+        validMessage(atribut.getName());
+        }
+    }
+    void padamkanApi(){
+        if (atribut.getStatus() = true){
+        atribut.setName("Padamkan Api");
+        validMessage(atribut.getName());
+        }
+    }
 
+    void ambilBoneka(){
+        if (status == true){
+        atribut.setName("Ambil Boneka");
+        validMessage(atribut.getName());
+        }
     }
 };
 
-class Boneka : public attributes
-{
-public:
-    Boneka();
-    ~Boneka();
+//class Boneka : public RobotKRSRI
+//{
+//public:
+//    string name;
+//    Boneka();
+//    ~Boneka();
 
-    //Boneka operator+(const Boneka& object){
-      //  Boneka doll;
-        //doll.name = name + object.name;
-        //return doll;
-    //}
-    //int* doll;
-    //doll = NULL;
-};
+//    Boneka operator+(const Boneka& object){
+//        Boneka doll;
+//        doll.name = attributes.name + object.name;
+//        return doll;
+//    }
+//    Boneka(const char* teddyBear){
+//        this->name = teddyBear;
+//    }
+//    void ambilBoneka(teddyBear){
 
-Boneka::Boneka()
-{
-}
+//    }
 
-Boneka::~Boneka()
-{
-}
+
+ 
+//};
+
+//Boneka::Boneka()
+//{
+//}
+
+//Boneka::~Boneka()
+//{
+//}
 
 
 #endif
