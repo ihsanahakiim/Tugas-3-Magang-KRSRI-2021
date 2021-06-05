@@ -84,7 +84,7 @@ public:
     //overload function
     void ambilBoneka(Boneka&){
         nyala(); //pemanggilan fungsi merubah status NULL
-        IfTrue("Ambil Boneka [BONUS]");
+        ambilBoneka();
     }
 };
 
